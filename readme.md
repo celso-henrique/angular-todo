@@ -34,6 +34,7 @@ $ npm test
 * [Gulp] - Automated and enhanced workflow
 * [Angular UI Router] - The de-facto solution to flexible routing with nested views in AngularJS
 * [Karma & Jasmine] - For testing purposes
+* [Babel] - ES2015 transpiler 
 
 Any questions? Just ask, feel free to use this project ♥
 
@@ -45,4 +46,5 @@ Any questions? Just ask, feel free to use this project ♥
    [Gulp]: <http://gulpjs.com/>
    [Angular UI Router]: <https://github.com/angular-ui/ui-router>
    [Karma & Jasmine]: <https://karma-runner.github.io/1.0/index.html>
+   [Babel]: <https://babeljs.io/>
 
