@@ -7,10 +7,10 @@
   ],
   "license": "ISC",
   "keywords": [
-    "studo",
+    "angular",
     "todo"
   ],
-  "homepage": "",
+  "homepage": "https://github.com/celso-henrique/angular-todo",
   "private": true,
   "ignore": [
     "**/.*",
