@@ -31,5 +31,16 @@
     "karma-jasmine": "^1.0.2",
     "require-dir": "^0.3.1"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/celso-henrique/angular-todo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/celso-henrique/angular-todo/issues"
+  },
+  "homepage": "https://github.com/celso-henrique/angular-todo#readme"
 }
