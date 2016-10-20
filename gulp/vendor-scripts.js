@@ -32,5 +32,5 @@ gulp.task('vendor-scripts:production', () => {
 
   return gulp.src(files)
   .pipe(concat('vendor.js'))
-  .pipe(gulp.dest('dist/js'));
+  .pipe(gulp.dest('build/js'));
 });
