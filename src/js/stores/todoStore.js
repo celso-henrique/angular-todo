@@ -1,3 +1,5 @@
+app.service('todoStore', todoStore);
+
 function todoStore() {
   var self = this;
   var todoList = mobx.observable([]);

@@ -1,5 +1,4 @@
 const app = angular.module('app', ['ui.router', 'ngMaterial'])
-  .service('todoStore', todoStore)
   .config(config);
 
 function config($stateProvider, $httpProvider,
