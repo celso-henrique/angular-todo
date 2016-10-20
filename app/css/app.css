@@ -1,0 +1,20 @@
+#todo-form-wrapper {
+  display: none;
+}
+#todo-form .title {
+  text-align: center;
+}
+#todo-form .radio.md-primary {
+  margin-top: 16px;
+}
+#todo-list {
+  padding: 0;
+}
+#logo {
+  text-transform: uppercase;
+}
+#logo md-icon {
+  float: left;
+  line-height: 29px;
+  margin-right: 10px;
+}

@@ -1,0 +1,35 @@
+{
+  "name": "angular-todo",
+  "version": "1.0.0",
+  "description": "A simple todo using Angular",
+  "main": "app/index.html",
+  "scripts": {
+    "start": "gulp serve",
+    "test": "gulp build && karma start"
+  },
+  "keywords": [
+    "todo"
+  ],
+  "author": "Celso Henrique",
+  "license": "ISC",
+  "devDependencies": {
+    "angular-mocks": "^1.5.8",
+    "babel-preset-es2015": "^6.16.0",
+    "bower": "^1.7.9",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-concat": "^2.6.0",
+    "gulp-html-replace": "^1.6.1",
+    "gulp-less": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-server-livereload": "^1.9.0",
+    "gulp-uglify": "^2.0.0",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.0.2",
+    "require-dir": "^0.3.1"
+  },
+  "dependencies": {}
+}

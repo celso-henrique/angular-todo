@@ -1,0 +1,32 @@
+{
+  "name": "angular-todo",
+  "description": "A simple todo using Angular",
+  "main": "index.js",
+  "authors": [
+    "Celso Henrique"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "studo",
+    "todo"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-messages": "^1.5.8",
+    "angular-material": "^1.1.1",
+    "angular-ui-router": "1.0.0-beta.1",
+    "mobx": "https://unpkg.com/mobx/bower.zip"
+  }
+}
