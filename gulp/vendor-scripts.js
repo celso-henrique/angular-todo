@@ -9,7 +9,7 @@ gulp.task('vendor-scripts', () => {
     'lib/angular-ui-router/release/angular-ui-router.js',
     'lib/angular-aria/angular-aria.js',
     'lib/angular-animate/angular-animate.js',
-    'lib/angular-messages/angulas-messages.js',
+    'lib/angular-messages/angular-messages.js',
     'lib/angular-material/angular-material.js',
     'lib/mobx/lib/mobx.umd.js'
   ];
@@ -25,7 +25,7 @@ gulp.task('vendor-scripts:production', () => {
     'lib/angular-ui-router/release/angular-ui-router.min.js',
     'lib/angular-aria/angular-aria.min.js',
     'lib/angular-animate/angular-animate.min.js',
-    'lib/angular-messages/angulas-messages.min.js',
+    'lib/angular-messages/angular-messages.min.js',
     'lib/angular-material/angular-material.min.js',
     'lib/mobx/lib/mobx.umd.js',
   ];
