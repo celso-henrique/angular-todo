@@ -53,6 +53,91 @@ function config($stateProvider, $httpProvider, $urlRouterProvider, $locationProv
   });
 }
 
+app.component('todo', {
+  controller: todoContainerController,
+  template: '<section class="todoApp">\n    <todo-form id="todo-form-wrapper" on-submit="$ctrl.addTodo($event)"></todo-form>\n    <todo-header filter="$ctrl.filter"></todo-header>\n    <md-content flex ng-if="$ctrl.todoList.length > 0">\n      <todo-list\n        list="$ctrl.todoList"\n        on-delete="$ctrl.deleteTodo($event)"\n        on-toggle="$ctrl.toggleTodo($event)">\n      </todo-list>\n    </md-content>\n  </section>',
+  bindings: {
+    filter: '<'
+  }
+});
+
+function todoContainerController(todoStore, $state, $mdDialog) {
+  var self = this;
+
+  var dispose = mobx.autorun(function () {
+    var todoList = todoStore.getAllTodos();
+    self.todoList = getListBasedOnFilter(todoList, self.filter);
+  });
+
+  self.$onDestroy = function () {
+    dispose();
+  };
+
+  self.addTodo = function (event) {
+    todoStore.addTodo(event.todo);
+  };
+
+  self.deleteTodo = function (event) {
+    todoStore.deleteTodo(event.index);
+  };
+
+  self.toggleTodo = function (event) {
+    todoStore.toggleTodo(event.index);
+  };
+
+  function getListBasedOnFilter(list, filter) {
+    if (!filter) return list;
+
+    var filterMap = {
+      all: function all(item) {
+        return true;
+      },
+      finished: function finished(item) {
+        return item.completed;
+      },
+      unfinished: function unfinished(item) {
+        return !item.completed;
+      },
+      back: function back(item) {
+        return item.type === 'back';
+      },
+      front: function front(item) {
+        return item.type === 'front';
+      }
+    };
+
+    return list.filter(filterMap[filter]);
+  }
+}
+
+app.service('todoStore', todoStore);
+
+function todoStore() {
+  var self = this;
+  var todoList = mobx.observable([]);
+
+  self.getAllTodos = function () {
+    return todoList;
+  };
+
+  self.addTodo = function (todo) {
+    var newTodo = Object.assign({}, todo, {
+      index: todoList.length,
+      completed: false
+    });
+
+    todoList.push(newTodo);
+  };
+
+  self.deleteTodo = function (index) {
+    todoList.splice(index, 1);
+  };
+
+  self.toggleTodo = function (index) {
+    todoList[index].completed = !todoList[index].completed;
+  };
+}
+
 app.component('todoForm', {
   controller: todoFormController,
   template: '<div class="md-dialog-container" name="todoForm" id="todo-form">\n    <md-dialog layout-padding>\n      <form ng-submit="$ctrl.submitForm()">\n        <h2 class="title">ADD TASK</h2>\n        <md-input-container>\n          <label>Task title</label>\n          <input required name="description" ng-model="$ctrl.newTodo.description">\n          <div ng-messages="todoForm.description.$error">\n            <div ng-message="required">This field is required.</div>\n          </div>\n          <md-radio-group ng-model="$ctrl.newTodo.type">\n            <md-radio-button value="front" class="radio md-primary">Front-end</md-radio-button>\n            <md-radio-button value="back">Back-end</md-radio-button>\n          </md-radio-group>\n        </md-input-container>\n        <md-dialog-actions>\n          <md-button ng-click="$ctrl.closeDialog()">Cancel</md-button><md-button class="md-primary md-raised" type="submit">Add</md-button>\n        </md-dialog-actions>\n      </form>\n    </md-dialog>\n  </div>',
@@ -184,88 +269,3 @@ function todoListController() {
     });
   };
 };
-
-app.component('todo', {
-  controller: todoContainerController,
-  template: '<section class="todoApp">\n    <todo-form id="todo-form-wrapper" on-submit="$ctrl.addTodo($event)"></todo-form>\n    <todo-header filter="$ctrl.filter"></todo-header>\n    <md-content flex ng-if="$ctrl.todoList.length > 0">\n      <todo-list\n        list="$ctrl.todoList"\n        on-delete="$ctrl.deleteTodo($event)"\n        on-toggle="$ctrl.toggleTodo($event)">\n      </todo-list>\n    </md-content>\n  </section>',
-  bindings: {
-    filter: '<'
-  }
-});
-
-function todoContainerController(todoStore, $state, $mdDialog) {
-  var self = this;
-
-  var dispose = mobx.autorun(function () {
-    var todoList = todoStore.getAllTodos();
-    self.todoList = getListBasedOnFilter(todoList, self.filter);
-  });
-
-  self.$onDestroy = function () {
-    dispose();
-  };
-
-  self.addTodo = function (event) {
-    todoStore.addTodo(event.todo);
-  };
-
-  self.deleteTodo = function (event) {
-    todoStore.deleteTodo(event.index);
-  };
-
-  self.toggleTodo = function (event) {
-    todoStore.toggleTodo(event.index);
-  };
-
-  function getListBasedOnFilter(list, filter) {
-    if (!filter) return list;
-
-    var filterMap = {
-      all: function all(item) {
-        return true;
-      },
-      finished: function finished(item) {
-        return item.completed;
-      },
-      unfinished: function unfinished(item) {
-        return !item.completed;
-      },
-      back: function back(item) {
-        return item.type === 'back';
-      },
-      front: function front(item) {
-        return item.type === 'front';
-      }
-    };
-
-    return list.filter(filterMap[filter]);
-  }
-}
-
-app.service('todoStore', todoStore);
-
-function todoStore() {
-  var self = this;
-  var todoList = mobx.observable([]);
-
-  self.getAllTodos = function () {
-    return todoList;
-  };
-
-  self.addTodo = function (todo) {
-    var newTodo = Object.assign({}, todo, {
-      index: todoList.length,
-      completed: false
-    });
-
-    todoList.push(newTodo);
-  };
-
-  self.deleteTodo = function (index) {
-    todoList.splice(index, 1);
-  };
-
-  self.toggleTodo = function (index) {
-    todoList[index].completed = !todoList[index].completed;
-  };
-}
